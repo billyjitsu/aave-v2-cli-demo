@@ -52,7 +52,7 @@ const referralCode = 0;
 console.log("About to deposit USDC Tokens to LendingPool");
 const depositUSDCTokensToLendingPool = async () => {
   try {
-    const amount = ethers.utils.parseUnits('1000', 6);
+    const amount = ethers.utils.parseUnits('1000000', 6);
     console.log('Wallet Address', wallet.address);
 
     // Check USDC balance
