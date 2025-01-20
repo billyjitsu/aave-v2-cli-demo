@@ -31,10 +31,8 @@ const provider = new ethers.providers.JsonRpcProvider(process.env.PROVIDER_URL);
 const hdNode = ethers.utils.HDNode.fromMnemonic(mnemonic);
 const wallet = new ethers.Wallet(hdNode.derivePath("m/44'/60'/0'/0/0")).connect(provider);
 
-console.log('Wallet Address', wallet.address);
-
 const userToLiquidate = new ethers.Wallet(hdNode.derivePath("m/44'/60'/0'/0/1")).connect(provider);
-console.log('User to Liquidate:', userToLiquidate.address);
+console.log('** User to Liquidate:', userToLiquidate.address);
 
 // ABI for LendingPool (only including the liquidationCall function)
 const LENDING_POOL_ADDRESS = deployedContracts.LendingPool.custom.address;
@@ -80,13 +78,17 @@ const getUserData = async (userAddress) => {
     // Calculate max liquidatable amount (50% of total debt in Aave V2)
     const maxLiquidatableAmount = totalDebtETH.mul(50).div(100);
 
+    // For liquidation threshold and LTV, we should divide by 1e4 since they're in basis points
+    const formattedLiquidationThreshold = currentLiquidationThreshold.div(100);  // Convert from basis points
+    const formattedLTV = ltv.div(100);  // Convert from basis points
+
     console.log('\nPosition Details:');
     console.log('------------------');
     console.log(`Total Collateral (ETH): ${formatEth(totalCollateralETH)}`);
     console.log(`Total Debt (ETH): ${formatEth(totalDebtETH)}`);
     console.log(`Available Borrows (ETH): ${formatEth(availableBorrowsETH)}`);
-    console.log(`Liquidation Threshold: ${formatEth(currentLiquidationThreshold)}%`);
-    console.log(`LTV: ${formatEth(ltv)}%`);
+    console.log(`Liquidation Threshold: ${formattedLiquidationThreshold}%`);
+    console.log(`LTV: ${formattedLTV}%`);
     console.log(`Health Factor: ${formatEth(healthFactor)}`);
     console.log(`Max Liquidatable Amount (ETH): ${formatEth(maxLiquidatableAmount)}`);
 
@@ -105,7 +107,7 @@ const getUserData = async (userAddress) => {
 // Add function to check health factor
 const checkHealthFactor = async (userAddress) => {
   try {
-    console.log('userAddress:', userAddress);
+    console.log('\nChecking health factor...');
     const userData = await lendingPool.getUserAccountData(userAddress);
     console.log('User Data:', userData);
 
@@ -186,9 +188,6 @@ const main = async () => {
     }
 
     console.log('Position is unhealthy. Proceeding with liquidation...');
-    
-    // Get initial position details
-    await getUserData(LIQUIDATION_USER);
 
     await performLiquidation();
     console.log('Liquidation process completed.');

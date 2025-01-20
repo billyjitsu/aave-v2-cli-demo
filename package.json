@@ -32,7 +32,8 @@
     "dexDeposit": "npx hardhat run scripts/FlashloanScripts/dexDeposit.js",
     "deposit-more-tokens": "npx hardhat run scripts/FlashloanScripts/deposit-more-tokens.js",
     "flashloan": "npx hardhat run scripts/FlashloanScripts/flashloan.js",
-    "contractFlashloan": "npx hardhat run scripts/FlashloanScripts/contractFlashloan.js"
+    "contractFlashloan": "npx hardhat run scripts/FlashloanScripts/contractFlashloan.js",
+    "tokenReserve": "npx hardhat run scripts/tokenReserve.js"
   },
   "devDependencies": {
     "@nomiclabs/buidler": "^1.4.7",
