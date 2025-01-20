@@ -47,9 +47,6 @@ contract FlashLoanDex is FlashLoanReceiverBase {
         uint256 flashLoanAmount,
         address tokenReceivedFromLiquidation
     ) internal {
-        // Simulate liquidation with a swap
-        IERC20(flashLoanAsset).approve(address(dex), flashLoanAmount);
-        dex.swap(flashLoanAsset, tokenReceivedFromLiquidation, flashLoanAmount);
 
         // Swap back to repay the flash loan
         uint256 liquidationTokenBalance = IERC20(tokenReceivedFromLiquidation).balanceOf(address(this));

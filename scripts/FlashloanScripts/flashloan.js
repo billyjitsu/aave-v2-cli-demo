@@ -88,9 +88,9 @@ async function main() {
         console.log("Tokens withdrawn");
 
         // Final balance check
-        usdcBalance = await usdcContract.balanceOf(wallet.address);
-        api3Balance = await api3Contract.balanceOf(wallet.address);
-        console.log(`Final balances - USDC: ${ethers.utils.formatUnits(usdcBalance, usdcDecimals)}, API3: ${ethers.utils.formatUnits(api3Balance, api3Decimals)}`);
+        // usdcBalance = await usdcContract.balanceOf(wallet.address);
+        // api3Balance = await api3Contract.balanceOf(wallet.address);
+        // console.log(`Final balances - USDC: ${ethers.utils.formatUnits(usdcBalance, usdcDecimals)}, API3: ${ethers.utils.formatUnits(api3Balance, api3Decimals)}`);
 
     } catch (error) {
         console.error("Error:", error);
