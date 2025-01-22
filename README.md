@@ -80,10 +80,11 @@ Follow the next steps to install `docker` and `docker-compose`:
 
 *NOTE: It is advisable to use a private RPC for the deployments. If the protocol deployment fails, try using another RPC.*
 
-- Make a `.env` file and add your mnemonic. This wallet needs to be funded to cover the gas costs for the deployments.
+- Make a `.env` file and add your mnemonic in the **root** folder (check env.example). This wallet needs to be funded to cover the gas costs for the deployments.
 
-    ```bash
-    mnemonic=""
+    ```
+    # Mnemonic, only first address will be used
+    MNEMONIC=""
     ```
 
 - You can now go forward and deploy the contracts.
@@ -102,13 +103,6 @@ Follow the next steps to set up the repository:
 
     ```bash
     cd ..
-    ```
-
-- Create an environment file named `.env` and fill the next environment variables
-
-    ```
-    # Mnemonic, only first address will be used
-    MNEMONIC=""
     ```
 
 ## Aave Markets configuration
