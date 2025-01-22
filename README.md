@@ -80,10 +80,11 @@ Follow the next steps to install `docker` and `docker-compose`:
 
 *NOTE: It is advisable to use a private RPC for the deployments. If the protocol deployment fails, try using another RPC.*
 
-- Make a `.env` file and add your mnemonic. This wallet needs to be funded to cover the gas costs for the deployments.
+- Make a `.env` file and add your mnemonic in the **root** folder (check env.example). This wallet needs to be funded to cover the gas costs for the deployments.
 
-    ```bash
-    mnemonic=""
+    ```
+    # Mnemonic, only first address will be used
+    MNEMONIC=""
     ```
 
 - You can now go forward and deploy the contracts.
@@ -102,13 +103,6 @@ Follow the next steps to set up the repository:
 
     ```bash
     cd ..
-    ```
-
-- Create an environment file named `.env` and fill the next environment variables
-
-    ```
-    # Mnemonic, only first address will be used
-    MNEMONIC=""
     ```
 
 ## Aave Markets configuration
@@ -222,7 +216,7 @@ yarn deposit-more-tokens
 To run the flashloan to do the liquidation, run the following command.  It will calculate the position, see how much can be paid back, request the amount, liquidate, swap and pay back the loan.
 
 ```
-yarn contractFlashloan
+yarn flashloanLiquidate
 ```
 
 Once you are done, or if you want to deploy a new instance of the dapp.  We don't want to be bogged down with so many tokens with the same name.  This will burn all the tokens from both wallets.

@@ -2,7 +2,7 @@ require('@nomiclabs/hardhat-waffle');
 require('hardhat-deploy');
 require("@nomicfoundation/hardhat-verify");
 
-require('dotenv').config();
+require('dotenv').config({path: '../.env'});
 
 const fs = require('fs');
 let config = require('./config.json');
@@ -13,7 +13,7 @@ module.exports = {
       url: config.network.rpc,
       chainId: config.network.chainId,
       accounts: {
-        mnemonic: process.env.mnemonic
+        mnemonic: process.env.MNEMONIC
       }
     }
    },
