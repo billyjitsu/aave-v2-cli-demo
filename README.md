@@ -216,7 +216,7 @@ yarn deposit-more-tokens
 To run the flashloan to do the liquidation, run the following command.  It will calculate the position, see how much can be paid back, request the amount, liquidate, swap and pay back the loan.
 
 ```
-yarn contractFlashloan
+yarn flashloanLiquidate
 ```
 
 Once you are done, or if you want to deploy a new instance of the dapp.  We don't want to be bogged down with so many tokens with the same name.  This will burn all the tokens from both wallets.
