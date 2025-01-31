@@ -80,6 +80,17 @@ module.exports = async () => {
     });
     deploymentsConfig['MockProxy'] = MockProxy.address;
 
+    // fs.writeFileSync('references.json', JSON.stringify(deploymentsConfig, null, 2));
+    // console.log('Deployments saved to references.json');
+
+    // Deploy The Mock OEV Oracle for Testing ONLY
+    const OEVMockProxy = await hre.deployments.deploy("OEVMockProxy", {
+        args: [],
+        from: (await hre.getUnnamedAccounts())[0],
+        log: true,
+    });
+    deploymentsConfig['OEVMockProxy'] = OEVMockProxy.address;
+
     fs.writeFileSync('references.json', JSON.stringify(deploymentsConfig, null, 2));
     console.log('Deployments saved to references.json');
 };
